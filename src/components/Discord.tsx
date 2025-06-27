@@ -46,15 +46,15 @@ interface DiscordUser {
   banner?: string;
   banner_color?: string;
   discriminator: string;
-  clan: any;
+  clan: unknown;
   primary_guild?: {
     tag: string;
     identity_guild_id: string;
     badge: string;
     identity_enabled: boolean;
   };
-  avatar_decoration_data: any;
-  collectibles: any;
+  avatar_decoration_data: unknown;
+  collectibles: unknown;
   bot: boolean;
   global_name: string;
   display_name: string;
@@ -160,7 +160,7 @@ export default function Discord() {
       }
     };
 
-    ws.onclose = (event) => {
+    ws.onclose = () => {
       setConnected(false);
       if (heartbeatInterval) {
         clearInterval(heartbeatInterval);

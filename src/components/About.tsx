@@ -67,7 +67,7 @@ export default function About() {
               <div className="bg-black/20 backdrop-blur-md border border-gray-500/30 rounded-xl p-8 shadow-lg hover:bg-black/30 transition-all duration-300">                
                 <h3 className="text-2xl font-semibold text-white mb-4">Who Am I?</h3>
                 <p className="text-gray-300 leading-relaxed mb-6">
-                  I'll keep it short. I'm 16 and I love my girlfriend.
+                  I&apos;ll keep it short. I&apos;m 16 and I love my girlfriend.
                 </p>
                 <div className="grid grid-cols-2 gap-4">
                   <div className="bg-gray-800/50 rounded-lg p-4 border border-gray-600/30">

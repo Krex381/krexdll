@@ -146,7 +146,7 @@ export default function Contact() {
             
             <div className="relative z-10">
               <h3 className="text-3xl font-bold text-white mb-4">
-                🤝 Let's Create Amazing Things Together!
+                🤝 Let&apos;s Create Amazing Things Together!
               </h3>              
               <p className="text-gray-300 mb-6 max-w-2xl mx-auto text-lg leading-relaxed">
                 If you want to develop innovative projects, grow together in the tech world, or just chat, 
