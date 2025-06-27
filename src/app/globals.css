@@ -1,0 +1,349 @@
+@import "tailwindcss";
+
+/* Custom global styles for horizontal navigation and glassmorphism */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow-x: hidden; /* Only disable horizontal scrolling */
+  overflow-y: auto; /* Allow vertical scrolling */
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+#__next {
+  height: 100%;
+}
+
+/* Only hide scrollbars for styling, but keep functionality */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+}
+
+*::-webkit-scrollbar {
+  width: 4px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 2px;
+}
+
+/* Glassmorphism utility classes */
+.glass {
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+/* Animation utilities */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Smooth transitions for horizontal sliding */
+.slide-transition {
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Hide scrollbar for smooth sections */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* 3D Perspective and Transform Utilities */
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.transform-gpu {
+  transform: translate3d(0, 0, 0);
+  will-change: transform;
+}
+
+/* Enhanced Glassmorphism Effects */
+.glass-dark {
+  backdrop-filter: blur(16px) saturate(180%);
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+}
+
+/* Modern transition animations */
+@keyframes morphIn {
+  0% {
+    transform: scale(0.8) rotateY(-15deg) translateZ(-100px);
+    opacity: 0;
+    filter: blur(10px);
+  }
+  50% {
+    transform: scale(0.95) rotateY(-5deg) translateZ(-20px);
+    opacity: 0.7;
+    filter: blur(2px);
+  }
+  100% {
+    transform: scale(1) rotateY(0deg) translateZ(0px);
+    opacity: 1;
+    filter: blur(0px);
+  }
+}
+
+@keyframes morphOut {
+  0% {
+    transform: scale(1) rotateY(0deg) translateZ(0px);
+    opacity: 1;
+    filter: blur(0px);
+  }
+  50% {
+    transform: scale(0.95) rotateY(5deg) translateZ(-20px);
+    opacity: 0.3;
+    filter: blur(2px);
+  }
+  100% {
+    transform: scale(0.8) rotateY(15deg) translateZ(-100px);
+    opacity: 0;
+    filter: blur(10px);
+  }
+}
+
+@keyframes slideInRight {
+  0% {
+    transform: translateX(100%) rotateY(15deg) scale(0.9);
+    opacity: 0;
+    filter: blur(8px);
+  }
+  100% {
+    transform: translateX(0%) rotateY(0deg) scale(1);
+    opacity: 1;
+    filter: blur(0px);
+  }
+}
+
+@keyframes slideInLeft {
+  0% {
+    transform: translateX(-100%) rotateY(-15deg) scale(0.9);
+    opacity: 0;
+    filter: blur(8px);
+  }
+  100% {
+    transform: translateX(0%) rotateY(0deg) scale(1);
+    opacity: 1;
+    filter: blur(0px);
+  }
+}
+
+.morph-in {
+  animation: morphIn 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.morph-out {
+  animation: morphOut 0.8s cubic-bezier(0.55, 0.085, 0.68, 0.53) forwards;
+}
+
+/* Enhanced glow effects */
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(255, 255, 255, 0.2);
+  }
+}
+
+.glow-effect {
+  animation: glow 2s ease-in-out infinite;
+}
+
+/* Particle effect overlay */
+@keyframes particles {
+  0% {
+    transform: translateY(0px) rotate(0deg);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100px) rotate(180deg);
+    opacity: 0;
+  }
+}
+
+.particle-overlay::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 20% 30%, rgba(255,255,255,0.1) 0%, transparent 50%),
+              radial-gradient(circle at 80% 70%, rgba(255,255,255,0.05) 0%, transparent 50%);
+  animation: particles 3s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* Mobile and Touch Optimizations */
+@media (max-width: 768px) {
+  html, body {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: pan-y; /* Allow vertical panning/scrolling */
+    overflow-x: hidden; /* Only disable horizontal scrolling */
+    overflow-y: auto; /* Allow vertical scrolling */
+  }
+  
+  /* Prevent default touch behaviors */
+  * {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  /* Allow touch on buttons and interactive elements */
+  button, a, [role="button"] {
+    touch-action: manipulation;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  /* Faster mobile animations */
+  * {
+    transition-duration: 0.3s !important;
+    animation-duration: 0.5s !important;
+  }
+  
+  /* Mobile glassmorphism adjustments */
+  .glass-dark {
+    backdrop-filter: blur(10px) saturate(150%);
+    background: rgba(0, 0, 0, 0.4);
+  }
+  
+  /* Mobile-optimized transforms */
+  .transform-gpu {
+    transform: translate3d(0, 0, 0);
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+  }
+  
+  /* Reduce motion for better performance */
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+/* Tablet specific optimizations */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .glass-dark {
+    backdrop-filter: blur(12px) saturate(160%);
+  }
+  
+  /* Medium animations for tablets */
+  * {
+    transition-duration: 0.4s !important;
+    animation-duration: 0.6s !important;
+  }
+}
+
+/* High DPI display optimizations */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx) {
+  .glass-dark {
+    backdrop-filter: blur(8px) saturate(140%);
+  }
+}
+
+/* Touch gesture indicators */
+.swipe-hint {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.875rem;
+  z-index: 30;
+  animation: fadeInOut 4s ease-in-out infinite;
+}
+
+@keyframes fadeInOut {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 1; }
+}
+
+/* Mobile navigation enhancements */
+@media (max-width: 768px) {
+  .mobile-nav-backdrop {
+    backdrop-filter: blur(8px);
+    background: rgba(0, 0, 0, 0.5);
+  }
+  
+  .mobile-nav-menu {
+    backdrop-filter: blur(16px);
+    background: rgba(0, 0, 0, 0.9);
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+  }
+}
+
+/* Performance optimizations */
+.gpu-accelerated {
+  transform: translateZ(0);
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Smooth touch scrolling fallback */
+.touch-scroll {
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}
+
+/* Hide elements on mobile for performance */
+@media (max-width: 768px) {
+  .desktop-only {
+    display: none !important;
+  }
+  
+  .mobile-hidden {
+    display: none !important;
+  }
+}
+
+/* Show mobile-specific elements */
+@media (max-width: 768px) {
+  .mobile-only {
+    display: block !important;
+  }
+}
