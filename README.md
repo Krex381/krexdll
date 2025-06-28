@@ -4,7 +4,7 @@ A modern, responsive portfolio website built with Next.js 14, TypeScript, and Fr
 
 ## 🚀 Live Demo
 
-Visit the live site: [krex38.dev](https://krex38.dev)
+Visit the live site: [krex38.xyz](https://krex38.xyz)
 
 ## ✨ Features
 
@@ -160,7 +160,7 @@ This project is open source and available under the [Apache 2.0 License](LICENSE
 ## 👤 Author
 
 **Krex**
-- Website: [krex38.dev](https://krex38.dev)
+- Website: [krex38.xyz](https://krex38.xyz)
 - GitHub: [@Krex381](https://github.com/Krex381)
 - Discord: [krex_dll](discord.com/users/644313519147319297)
 
