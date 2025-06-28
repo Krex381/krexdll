@@ -451,10 +451,23 @@ export default function Home() {
 
             {/* Simple Footer - Positioned above arrows */}
             <footer className="fixed bottom-25 left-0 right-0 z-30 p-4">
-              <div className="text-center">
+              <div className="text-center space-y-2">
                 <p className="text-gray-400 text-sm">
                   © 2025 Krex - we imagine, we code.
                 </p>
+                <div className="flex justify-center items-center space-x-2">
+                  <span className="text-gray-500 text-xs">Want to use this?</span>
+                  <motion.a
+                    href="https://github.com/Krex381/krexdll"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-400 hover:text-white text-xs underline transition-colors duration-300"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    Check out on GitHub
+                  </motion.a>
+                </div>
               </div>
             </footer>
 

@@ -26,8 +26,8 @@ export const metadata: Metadata = {
     images: [
       {
         url: "/assets/og-image.png", // Bu resim 1200x630 px olmalı
-        width: 1200,
-        height: 630,
+        width: 960,
+        height: 540,
         alt: "krex.dll - Web Developer Portfolio",
       }
     ],
