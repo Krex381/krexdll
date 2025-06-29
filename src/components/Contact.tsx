@@ -172,14 +172,6 @@ export default function Contact() {
                   📸 DM on Instagram
                 </motion.button>
               </div>
-              
-              <div className="mt-6 flex justify-center">
-                <div className="px-6 py-2 bg-black/50 rounded-full border border-gray-600/30">                  
-                <p className="text-gray-400 text-sm">
-                    💡 <span className="text-white font-medium">Pro tip:</span> You get the fastest response from Discord!
-                  </p>
-                </div>
-              </div>
             </div>
           </div>
         </motion.div>        
