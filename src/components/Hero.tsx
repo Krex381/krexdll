@@ -4,7 +4,8 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 
 export default function Hero() {
-  return (      <section 
+  return (      
+    <section 
       id="hero" 
       className="h-screen w-full flex items-center justify-center relative bg-black overflow-hidden"      
       style={{
