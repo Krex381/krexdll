@@ -2,6 +2,7 @@
 
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect } from 'react';
+import { getVersion } from '@/utils/version';
 import Hero from '@/components/Hero';
 import About from '@/components/About';
 import Skills from '@/components/Skills';
@@ -196,6 +197,7 @@ export default function Home() {
       }
     })
   };
+  
   return (
     <main className="h-screen bg-black">
       {/* Desktop Navigation Bar */}
@@ -213,50 +215,67 @@ export default function Home() {
               transition={{ duration: 0.3 }}
             >
               <ul className="flex justify-center space-x-8">
-                {sections.map((section, index) => (
-                  <li key={section.id}>
-                    <motion.button
-                      onClick={() => {
-                        const newDirection = index > currentSection ? 1 : -1;
-                        paginate(newDirection);
-                        setCurrentSection(index);
-                      }}
-                      className={`relative px-6 py-3 text-sm font-medium transition-all duration-500 rounded-xl overflow-hidden ${
-                        currentSection === index
-                          ? 'text-white'
-                          : 'text-gray-300 hover:text-white'
-                      }`}
-                      whileHover={{ scale: 1.05, y: -2 }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      {section.name}
-                      {currentSection === index && (
-                        <motion.div
-                          layoutId="activeTab"
-                          className="absolute inset-0 bg-gradient-to-r from-gray-600/40 to-gray-700/40 rounded-xl border border-gray-400/30"
-                          initial={false}
-                          transition={{ 
-                            type: "spring", 
-                            stiffness: 300, 
-                            damping: 30,
-                            duration: 0.6
-                          }}
-                        />
-                      )}
+              {sections.map((section, index) => (
+                <li key={section.id}>
+                  <motion.button
+                    onClick={() => {
+                      const newDirection = index > currentSection ? 1 : -1;
+                      paginate(newDirection);
+                      setCurrentSection(index);
+                    }}
+                    className={`relative px-6 py-3 text-sm font-medium transition-all duration-500 rounded-xl overflow-hidden ${
+                      currentSection === index
+                        ? 'text-white'
+                        : 'text-gray-300 hover:text-white'
+                    }`}
+                    whileHover={{ scale: 1.05, y: -2 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    {section.name}
+                    {currentSection === index && (
                       <motion.div
-                        className="absolute inset-0 rounded-xl"
-                        whileHover={{
-                          background: "linear-gradient(45deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05))",
+                        layoutId="activeTab"
+                        className="absolute inset-0 bg-gradient-to-r from-gray-600/40 to-gray-700/40 rounded-xl border border-gray-400/30"
+                        initial={false}
+                        transition={{ 
+                          type: "spring", 
+                          stiffness: 300, 
+                          damping: 30,
+                          duration: 0.6
                         }}
-                        transition={{ duration: 0.3 }}
                       />
-                    </motion.button>
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
+                    )}
+                    <motion.div
+                      className="absolute inset-0 rounded-xl"
+                      whileHover={{
+                        background: "linear-gradient(45deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05))",
+                      }}
+                      transition={{ duration: 0.3 }}
+                    />
+                  </motion.button>
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+        </div>
+      </motion.nav>
+      )}
+
+      {/* Desktop Version Badge */}
+      {!isMobile && !isTablet && (
+        <motion.div
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, delay: 1.5 }}
+          className="fixed top-4 right-4 z-40"
+        >
+          <div className="backdrop-blur-xl bg-black/20 border border-gray-500/20 rounded-lg px-3 py-2">
+            <div className="flex items-center gap-2 text-xs text-gray-400">
+              <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+              <span>v{getVersion()}</span>
+            </div>
           </div>
-        </motion.nav>
+        </motion.div>
       )}
 
       {/* Tablet Navigation */}
@@ -360,7 +379,11 @@ export default function Home() {
                   </svg>
                 </motion.button>
                 
-                <h3 className="text-white text-lg font-semibold mb-8">Menu</h3>
+                <h3 className="text-white text-lg font-semibold mb-2">Menu</h3>
+                <div className="text-xs text-gray-400 mb-6 flex items-center gap-2">
+                  <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+                  <span>Development v{getVersion()}</span>
+                </div>
                 {sections.map((section, index) => (                
                   <motion.button
                   key={section.id}
