@@ -18,8 +18,6 @@ import {
   FaServer,
   FaDatabase,
   FaCode,
-  FaCodeBranch,
-  FaNpm,
   FaFigma
 } from 'react-icons/fa';
 import { 
