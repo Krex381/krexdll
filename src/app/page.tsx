@@ -55,8 +55,23 @@ export default function Home() {
       touchStartTime = Date.now();
       isTouching = true;
     };    
-    const handleTouchMove = () => {
+    const handleTouchMove = (e: TouchEvent) => {
+      if (!isTouching) return;
       
+      const touch = e.touches[0];
+      const deltaX = Math.abs(touch.clientX - touchStartX);
+      const deltaY = Math.abs(touch.clientY - touchStartY);
+      
+      const target = e.target as Element;
+      const scrollableParent = target.closest('[style*="overflow-y: auto"], [class*="overflow-y-auto"]');
+      
+      if (deltaY > deltaX && scrollableParent) {
+        return;
+      }
+      
+      if (deltaX > deltaY && deltaX > 30) {
+        e.preventDefault();
+      }
     };
 
     const handleTouchEnd = (e: TouchEvent) => {
@@ -69,9 +84,9 @@ export default function Home() {
     };
 
     const handleSwipe = () => {
-      const swipeThreshold = 50; 
-      const maxVerticalDistance = 80; 
-      const timeThreshold = 800;
+      const swipeThreshold = 80;
+      const maxVerticalDistance = 120;
+      const timeThreshold = 1000;
       const swipeTime = Date.now() - touchStartTime;
       const deltaX = touchStartX - touchEndX;
       const deltaY = Math.abs(touchStartY - touchEndY);
@@ -79,7 +94,8 @@ export default function Home() {
       if (
         Math.abs(deltaX) > swipeThreshold &&
         deltaY < maxVerticalDistance &&
-        swipeTime < timeThreshold
+        swipeTime < timeThreshold &&
+        Math.abs(deltaX) > deltaY * 1.5
       ) {
         
         if (deltaX > 0 && currentSection < sections.length - 1) {
@@ -98,7 +114,7 @@ export default function Home() {
 
     const addTouchListeners = () => {
       document.addEventListener('touchstart', handleTouchStart, { passive: true });
-      document.addEventListener('touchmove', handleTouchMove, { passive: true });
+      document.addEventListener('touchmove', handleTouchMove, { passive: false });
       document.addEventListener('touchend', handleTouchEnd, { passive: true });
     };
     const removeTouchListeners = () => {
@@ -181,7 +197,7 @@ export default function Home() {
     })
   };
   return (
-    <main className="h-screen overflow-hidden bg-black">
+    <main className="h-screen bg-black">
       {/* Desktop Navigation Bar */}
       {!isMobile && !isTablet && (
         <motion.nav
@@ -407,8 +423,9 @@ export default function Home() {
             />
           ))}
         </motion.div>
-      )}      {/* Section Container */}
-      <div className="h-screen relative perspective-1000 bg-black overflow-hidden">
+      )}      
+      {/* Section Container */}
+      <div className="h-screen relative perspective-1000 bg-black">
         <div className="absolute inset-0 bg-black z-0" />
         
         <AnimatePresence initial={false} custom={direction}>
@@ -419,7 +436,7 @@ export default function Home() {
             initial="enter"
             animate="center"
             exit="exit"
-            className="absolute inset-0 w-full h-full transform-gpu z-10 overflow-hidden"
+            className="absolute inset-0 w-full h-full transform-gpu z-10"
             style={{ 
               transformStyle: "preserve-3d",
               backfaceVisibility: "hidden"

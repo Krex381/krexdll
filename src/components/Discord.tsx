@@ -336,7 +336,8 @@ export default function Discord() {
     <section 
       id="discord"
       ref={ref}
-      className="h-screen flex items-center justify-center relative bg-black overflow-hidden"
+      className="min-h-screen flex items-start justify-center relative bg-black overflow-y-auto"
+      style={{ maxHeight: '100vh' }}
     >
       {/* Animated Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-indigo-900/20 via-purple-900/20 to-black overflow-hidden">
@@ -348,14 +349,14 @@ export default function Discord() {
         initial={{ opacity: 0, y: 50 }}
         animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        className="container mx-auto px-6 z-10 w-full max-w-4xl"
+        className="container mx-auto px-6 z-10 w-full max-w-4xl py-8 pb-32 md:pb-8"
       >
         {/* Title */}
         <motion.div 
           initial={{ opacity: 0, y: -30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -30 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-center mb-8"
+          className="text-center mb-8 mt-16 md:mt-27"
         >
           <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">Discord Live Status</h2>
           <div className="flex items-center justify-center gap-2">

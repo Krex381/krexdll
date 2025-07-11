@@ -5,13 +5,14 @@ import Image from 'next/image';
 
 export default function Hero() {
   return (      
-    <section 
+  <section 
       id="hero" 
-      className="h-screen w-full flex items-center justify-center relative bg-black overflow-hidden"      
+      className="min-h-screen w-full flex items-center justify-center relative bg-black overflow-y-auto"
       style={{
         backgroundImage: "url('/assets/bg.jpg')",
         backgroundSize: 'cover',
-        backgroundPosition: 'center'
+        backgroundPosition: 'center',
+        maxHeight: '100vh'
       }}
     >
       {/* Dark overlay */}

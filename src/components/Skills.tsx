@@ -3,37 +3,8 @@
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import CountUp from 'react-countup';
-import { 
-  FaHtml5, 
-  FaCss3Alt, 
-  FaJs, 
-  FaReact, 
-  FaGitAlt,
-  FaDocker,
-  FaPython,
-  FaNodeJs,
-  FaPhp,
-  FaLinux,
-  FaAws,
-  FaServer,
-  FaDatabase,
-  FaCode,
-  FaFigma
-} from 'react-icons/fa';
-import { 
-  SiTypescript, 
-  SiNextdotjs, 
-  SiTailwindcss, 
-  SiMongodb, 
-  SiExpress, 
-  SiPostgresql, 
-  SiMysql,
-  SiVercel,
-  SiGo,
-  SiRuby,
-  SiFramer,
-  SiChakraui
-} from 'react-icons/si';
+import { FaHtml5, FaCss3Alt, FaJs, FaReact, FaGitAlt, FaDocker, FaPython, FaNodeJs, FaPhp, FaLinux, FaAws, FaServer, FaDatabase, FaCode, FaFigma } from 'react-icons/fa';
+import { SiTypescript, SiNextdotjs, SiTailwindcss, SiMongodb, SiExpress, SiPostgresql, SiMysql, SiVercel,SiGo, SiRuby, SiFramer,SiChakraui } from 'react-icons/si';
 
 const skills = [
   {
@@ -101,18 +72,19 @@ export default function Skills() {
     return () => clearInterval(interval);
   }, []);
   return (
-    <section className="h-screen flex items-center justify-center relative bg-black overflow-hidden">
+    <section className="min-h-screen flex items-start justify-center relative bg-black overflow-y-auto"
+             style={{ maxHeight: '100vh' }}>
       {/* Background with dark glassmorphism */}
       <div className="absolute inset-0 bg-gradient-to-br from-gray-800/30 via-gray-900/40 to-black/50" />
       
-      <div className="container mx-auto px-6 z-10 w-full">
+      <div className="container mx-auto px-6 z-10 w-full py-8 pb-32 md:pb-8">
         <div className="max-w-6xl mx-auto">
           {/* Section Title */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-center mb-16"
+            className="text-center mb-8 md:mb-16 mt-16 md:mt-27"
           >            
             <h2 className="text-5xl md:text-6xl font-bold text-white mb-6">
               Capabilities

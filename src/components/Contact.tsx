@@ -77,7 +77,8 @@ export default function Contact() {
   <section 
       id="contact" 
       ref={ref}
-      className="h-screen flex items-center justify-center relative bg-black overflow-hidden"
+      className="min-h-screen flex items-start justify-center relative bg-black overflow-y-auto"
+      style={{ maxHeight: '100vh' }}
     >
 
       <div className="absolute inset-0 bg-gradient-to-br from-gray-800/30 via-gray-900/40 to-black/50" />
@@ -85,10 +86,10 @@ export default function Contact() {
         variants={containerVariants}
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
-        className="container mx-auto px-6 z-10 w-full"
+        className="container mx-auto px-6 z-10 w-full py-8 pb-32 md:pb-8"
       >
         <div className="max-w-6xl mx-auto">
-          <motion.div variants={itemVariants} className="text-center mb-16">
+          <motion.div variants={itemVariants} className="text-center mb-8 md:mb-16 mt-16 md:mt-27">
             <h2 className="text-5xl md:text-6xl font-bold text-white mb-6">Contact</h2>
             <div className="w-24 h-1 bg-gradient-to-r from-gray-400 to-gray-600 mx-auto rounded-full" />
           </motion.div>        
