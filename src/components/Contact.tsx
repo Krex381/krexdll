@@ -77,7 +77,7 @@ export default function Contact() {
   <section 
       id="contact" 
       ref={ref}
-      className="min-h-screen flex items-start md:items-center justify-center relative bg-black py-20 md:py-0"
+      className="h-screen flex items-center justify-center relative bg-black overflow-hidden"
     >
 
       <div className="absolute inset-0 bg-gradient-to-br from-gray-800/30 via-gray-900/40 to-black/50" />

@@ -336,7 +336,7 @@ export default function Discord() {
     <section 
       id="discord"
       ref={ref}
-      className="min-h-screen flex items-center justify-center relative bg-black py-20"
+      className="h-screen flex items-center justify-center relative bg-black overflow-hidden"
     >
       {/* Animated Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-indigo-900/20 via-purple-900/20 to-black overflow-hidden">

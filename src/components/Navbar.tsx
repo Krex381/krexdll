@@ -15,7 +15,7 @@ export default function Navbar({ currentSection, setCurrentSection }: NavbarProp
     { id: 'skills', label: 'Skills' },
     { id: 'education', label: 'Education' },
     { id: 'contact', label: 'Contact' },
-    { id: 'discord', label: 'Discord' },
+    { id: 'discord', label: 'Discord' }
   ];
 
   return (

@@ -15,21 +15,21 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "krex.dll",
-  description: "Get to know me, my projects, and my skills as a web developer.",
+  description: "everyone heard about me but no one knows me.",
   keywords: "portfolio, web developer, frontend developer, React, Next.js, TypeScript, krex.dll, werzy",
   authors: [{ name: "Krex" }],
   
   openGraph: {
-    title: "krex.dll - Web Developer Portfolio",
-    description: "Get to know me, my projects, and my skills as a web developer.",
+    title: "krex.dll - Portfolio",
+    description: "everyone heard about me but no one knows me.",
     url: "https://krex38.dev",
     siteName: "krex.dll Portfolio",
     images: [
       {
-        url: "/assets/og-image.png", // Bu resim 1200x630 px olmalı
+        url: "/assets/og-image.png",
         width: 960,
         height: 540,
-        alt: "krex.dll - Web Developer Portfolio",
+        alt: "krex.dll - Portfolio",
       }
     ],
     locale: "en_US",

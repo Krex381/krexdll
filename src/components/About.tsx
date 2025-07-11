@@ -2,12 +2,37 @@
 
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import { useState, useEffect } from 'react';
 
 export default function About() {
+  const [repoCount, setRepoCount] = useState<number | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchGitHubData = async () => {
+      try {
+        const response = await fetch('https://api.github.com/users/Krex381');
+        if (response.ok) {
+          const data = await response.json();
+          setRepoCount(data.public_repos);
+        } else {
+          setRepoCount(11);
+        }
+      } catch (error) {
+        console.error('Failed to fetch GitHub data:', error);
+        setRepoCount(11);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchGitHubData();
+  }, []);
+
   return (
     <section 
       id="about"
-      className="min-h-screen flex items-start md:items-center justify-center relative bg-black py-20 md:py-0"
+      className="h-screen flex items-center justify-center relative bg-black overflow-hidden"
     >
       {/* Background with dark glassmorphism */}
       <div className="absolute inset-0 bg-gradient-to-br from-gray-800/30 via-gray-900/40 to-black/50" />
@@ -76,7 +101,19 @@ export default function About() {
                   </div>
                   <div className="bg-gray-800/50 rounded-lg p-4 border border-gray-600/30">
                     <h4 className="text-gray-400 font-semibold mb-2">Projects</h4>
-                    <p className="text-gray-300">20+ Completed</p>
+                    <p className="text-gray-300">
+                      {loading ? (
+                        <span className="inline-flex items-center gap-1">
+                          <svg className="animate-spin h-4 w-4 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                          </svg>
+                          Loading...
+                        </span>
+                      ) : (
+                        `${repoCount} repositories`
+                      )}
+                    </p>
                   </div>
                 </div>
               </div>                

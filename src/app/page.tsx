@@ -29,7 +29,6 @@ export default function Home() {
     setDirection(newDirection);
   };
 
-  // Check if device is mobile/tablet
   useEffect(() => {
     const checkDevice = () => {
       const width = window.innerWidth;
@@ -40,7 +39,7 @@ export default function Home() {
     checkDevice();
     window.addEventListener('resize', checkDevice);
     return () => window.removeEventListener('resize', checkDevice);
-  }, []);  // Enhanced touch gesture handling for mobile and tablet
+  }, []);
   useEffect(() => {
     let touchStartX = 0;
     let touchEndX = 0;
@@ -57,7 +56,7 @@ export default function Home() {
       isTouching = true;
     };    
     const handleTouchMove = () => {
-      // Dikey scroll'u engelleme! Sadece yatay swipe için gerekirse preventDefault uygula
+      
     };
 
     const handleTouchEnd = (e: TouchEvent) => {
@@ -70,26 +69,26 @@ export default function Home() {
     };
 
     const handleSwipe = () => {
-      const swipeThreshold = 50; // Minimum yatay mesafe
-      const maxVerticalDistance = 80; // Yatay swipe için izin verilen max dikey sapma
+      const swipeThreshold = 50; 
+      const maxVerticalDistance = 80; 
       const timeThreshold = 800;
       const swipeTime = Date.now() - touchStartTime;
       const deltaX = touchStartX - touchEndX;
       const deltaY = Math.abs(touchStartY - touchEndY);
-      // Sadece yatay swipe kontrolü
+      
       if (
         Math.abs(deltaX) > swipeThreshold &&
         deltaY < maxVerticalDistance &&
         swipeTime < timeThreshold
       ) {
-        // preventDefault sadece burada
+        
         if (deltaX > 0 && currentSection < sections.length - 1) {
-          // Sola kaydır: sonraki section
+          
           paginate(1);
           setCurrentSection(prev => prev + 1);
           setShowMobileNav(false);
         } else if (deltaX < 0 && currentSection > 0) {
-          // Sağa kaydır: önceki section
+          
           paginate(-1);
           setCurrentSection(prev => prev - 1);
           setShowMobileNav(false);
@@ -112,7 +111,7 @@ export default function Home() {
     }
     return removeTouchListeners;
   }, [currentSection, sections.length, isMobile, isTablet]);
-  // Keyboard navigation
+  
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
@@ -134,7 +133,7 @@ export default function Home() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [currentSection, sections.length]);
 
-  // Optimized transition variants for different devices
+  
   const sectionVariants = {
     enter: (direction: number) => ({
       x: direction > 0 ? (isMobile ? 300 : 1200) : (isMobile ? -300 : -1200),
@@ -182,7 +181,7 @@ export default function Home() {
     })
   };
   return (
-    <main className="h-screen overflow-x-hidden overflow-y-auto bg-black">
+    <main className="h-screen overflow-hidden bg-black">
       {/* Desktop Navigation Bar */}
       {!isMobile && !isTablet && (
         <motion.nav
@@ -420,15 +419,13 @@ export default function Home() {
             initial="enter"
             animate="center"
             exit="exit"
-            className="absolute inset-0 w-full transform-gpu z-10 overflow-y-auto overflow-x-hidden"
+            className="absolute inset-0 w-full h-full transform-gpu z-10 overflow-hidden"
             style={{ 
               transformStyle: "preserve-3d",
-              backfaceVisibility: "hidden",
-              minHeight: "100vh",
-              height: "auto"
+              backfaceVisibility: "hidden"
             }}
           >
-            <div style={{ minHeight: "100vh", paddingBottom: "2rem" }}>
+            <div className="h-full w-full">
               {sections[currentSection].component}
             </div>
           </motion.div>
@@ -449,108 +446,6 @@ export default function Home() {
         )}
       </div>      
 
-            {/* Simple Footer - Positioned above arrows */}
-            <footer className="fixed bottom-25 left-0 right-0 z-30 p-4">
-              <div className="text-center space-y-2">
-                <p className="text-gray-400 text-sm">
-                  © 2025 Krex - we imagine, we code.
-                </p>
-                <div className="flex justify-center items-center space-x-2">
-                  <span className="text-gray-500 text-xs">Want to use this?</span>
-                  <motion.a
-                    href="https://github.com/Krex381/krexdll"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-gray-400 hover:text-white text-xs underline transition-colors duration-300"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    Check out on GitHub
-                  </motion.a>
-                </div>
-              </div>
-            </footer>
-
-      {/* Arrow Navigation - Responsive sizing */}
-      <div className={`fixed bottom-8 left-1/2 transform -translate-x-1/2 z-50 flex gap-4 ${isMobile ? 'gap-3' : 'gap-6'}`}>
-        <motion.button
-          onClick={(e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            if (currentSection > 0) {
-              paginate(-1);
-              setCurrentSection(prev => prev - 1);
-            }
-          }}
-          onTouchEnd={(e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            if (currentSection > 0) {
-              paginate(-1);
-              setCurrentSection(prev => prev - 1);
-            }
-          }}
-          disabled={currentSection === 0}
-          className={`group relative ${isMobile ? 'p-3' : 'p-4'} rounded-full backdrop-blur-xl bg-black/30 border border-gray-500/30 text-white transition-all duration-500 overflow-hidden ${
-            currentSection === 0 
-              ? 'opacity-30 cursor-not-allowed' 
-              : 'hover:bg-black/50 hover:border-gray-400/50'
-          }`}
-          whileHover={currentSection > 0 ? { 
-            scale: 1.1, 
-            y: -4,
-            boxShadow: "0 10px 30px rgba(0,0,0,0.3)"
-          } : {}}
-          whileTap={currentSection > 0 ? { scale: 0.95 } : {}}
-        >
-          <motion.div
-            className={`${isMobile ? 'text-lg' : 'text-xl'} font-bold`}
-            animate={{ x: currentSection === 0 ? 0 : [-2, 2, -2, 0] }}
-            transition={{ duration: 0.5 }}
-          >
-            ←
-          </motion.div>
-        </motion.button>
-        
-        <motion.button
-          onClick={(e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            if (currentSection < sections.length - 1) {
-              paginate(1);
-              setCurrentSection(prev => prev + 1);
-            }
-          }}
-          onTouchEnd={(e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            if (currentSection < sections.length - 1) {
-              paginate(1);
-              setCurrentSection(prev => prev + 1);
-            }
-          }}
-          disabled={currentSection === sections.length - 1}
-          className={`group relative ${isMobile ? 'p-3' : 'p-4'} rounded-full backdrop-blur-xl bg-black/30 border border-gray-500/30 text-white transition-all duration-500 overflow-hidden ${
-            currentSection === sections.length - 1 
-              ? 'opacity-30 cursor-not-allowed' 
-              : 'hover:bg-black/50 hover:border-gray-400/50'
-          }`}
-          whileHover={currentSection < sections.length - 1 ? { 
-            scale: 1.1, 
-            y: -4,
-            boxShadow: "0 10px 30px rgba(0,0,0,0.3)"
-          } : {}}
-          whileTap={currentSection < sections.length - 1 ? { scale: 0.95 } : {}}
-        >
-          <motion.div
-            className={`${isMobile ? 'text-lg' : 'text-xl'} font-bold`}
-            animate={{ x: currentSection === sections.length - 1 ? 0 : [2, -2, 2, 0] }}
-            transition={{ duration: 0.5 }}
-          >
-            →
-          </motion.div>
-        </motion.button>
-      </div>      
       {/* Mobile Swipe Hint */}
       {isMobile && currentSection === 0 && (
         <motion.div
@@ -571,6 +466,33 @@ export default function Home() {
           </motion.div>
         </motion.div>
       )}
+      
+      {/* Footer */}
+      <motion.footer
+        initial={{ y: 100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.6, delay: 1 }}
+        className="fixed bottom-12 left-1/2 transform -translate-x-1/2 z-30"
+      >
+        <div className="backdrop-blur-xl bg-black/30 border border-gray-500/30 rounded-xl px-4 py-2 text-center">
+          <div className="text-xs text-gray-500 mt-1">
+            © 2025 Krex - All rights reserved.
+          </div>
+          <div className="flex justify-center items-center space-x-2 mt-1">
+            <span className="text-gray-500 text-xs">Want to skid this?</span>
+            <motion.a
+              href="https://github.com/Krex381/krexdll"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-400 hover:text-white text-xs underline transition-colors duration-300"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Check out on GitHub
+            </motion.a>
+          </div>
+        </div>
+      </motion.footer>
     </main>
   );
 }

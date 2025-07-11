@@ -6,7 +6,7 @@ import Image from 'next/image';
 export default function Hero() {
   return (      <section 
       id="hero" 
-      className="min-h-screen w-full flex items-start md:items-center justify-center relative bg-black py-20 md:py-0"      
+      className="h-screen w-full flex items-center justify-center relative bg-black overflow-hidden"      
       style={{
         backgroundImage: "url('/assets/bg.jpg')",
         backgroundSize: 'cover',
