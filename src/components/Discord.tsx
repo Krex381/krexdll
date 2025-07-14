@@ -27,6 +27,12 @@ interface DiscordActivity {
   application_id?: string;
   buttons?: string[];
   platform?: string;
+
+  emoji?: {
+    id?: string;
+    name?: string;
+    animated?: boolean;
+  };
 }
 
 interface SpotifyData {
@@ -305,14 +311,20 @@ export default function Discord() {
         <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" className="text-purple-500">
           <path d="M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0zm14.571 11.143l-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714Z"/>
         </svg>
-      )
-    };
-    return icons[type] || (
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" className="text-gray-400">
-        <path d="M10.59 13.41c.41.39.41 1.03 0 1.42-.39.39-1.03.39-1.42 0a5.003 5.003 0 0 1 0-7.07l3.54-3.54a5.003 5.003 0 0 1 7.07 0 5.003 5.003 0 0 1 0 7.07l-1.49 1.49c.01-.82-.12-1.64-.4-2.42l.47-.48a2.982 2.982 0 0 0 0-4.24 2.982 2.982 0 0 0-4.24 0l-3.53 3.53a2.982 2.982 0 0 0 0 4.24zm2.82-4.24c.39-.39 1.03-.39 1.42 0a5.003 5.003 0 0 1 0 7.07l-3.54 3.54a5.003 5.003 0 0 1-7.07 0 5.003 5.003 0 0 1 0-7.07l1.49-1.49c-.01.82.12 1.64.4 2.43l-.47.47a2.982 2.982 0 0 0 0 4.24 2.982 2.982 0 0 0 4.24 0l3.53-3.53a2.982 2.982 0 0 0 0-4.24.973.973 0 0 1 0-1.42z"/>
+      ),
+
+    paypal: (
+      <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="20" height="20" viewBox="0 0 48 48">
+        <path fill="#1565C0" d="M18.7,13.767l0.005,0.002C18.809,13.326,19.187,13,19.66,13h13.472c0.017,0,0.034-0.007,0.051-0.006C32.896,8.215,28.887,6,25.35,6H11.878c-0.474,0-0.852,0.335-0.955,0.777l-0.005-0.002L5.029,33.813l0.013,0.001c-0.014,0.064-0.039,0.125-0.039,0.194c0,0.553,0.447,0.991,1,0.991h8.071L18.7,13.767z"></path><path fill="#039BE5" d="M33.183,12.994c0.053,0.876-0.005,1.829-0.229,2.882c-1.281,5.995-5.912,9.115-11.635,9.115c0,0-3.47,0-4.313,0c-0.521,0-0.767,0.306-0.88,0.54l-1.74,8.049l-0.305,1.429h-0.006l-1.263,5.796l0.013,0.001c-0.014,0.064-0.039,0.125-0.039,0.194c0,0.553,0.447,1,1,1h7.333l0.013-0.01c0.472-0.007,0.847-0.344,0.945-0.788l0.018-0.015l1.812-8.416c0,0,0.126-0.803,0.97-0.803s4.178,0,4.178,0c5.723,0,10.401-3.106,11.683-9.102C42.18,16.106,37.358,13.019,33.183,12.994z"></path><path fill="#283593" d="M19.66,13c-0.474,0-0.852,0.326-0.955,0.769L18.7,13.767l-2.575,11.765c0.113-0.234,0.359-0.54,0.88-0.54c0.844,0,4.235,0,4.235,0c5.723,0,10.432-3.12,11.713-9.115c0.225-1.053,0.282-2.006,0.229-2.882C33.166,12.993,33.148,13,33.132,13H19.66z"></path>
       </svg>
-    );
+    ),
   };
+  return icons[type] || (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" className="text-gray-400">
+      <path d="M10.59 13.41c.41.39.41 1.03 0 1.42-.39.39-1.03.39-1.42 0a5.003 5.003 0 0 1 0-7.07l3.54-3.54a5.003 5.003 0 0 1 7.07 0 5.003 5.003 0 0 1 0 7.07l-1.49 1.49c.01-.82-.12-1.64-.4-2.42l.47-.48a2.982 2.982 0 0 0 0-4.24 2.982 2.982 0 0 0-4.24 0l-3.53 3.53a2.982 2.982 0 0 0 0 4.24zm2.82-4.24c.39-.39 1.03-.39 1.42 0a5.003 5.003 0 0 1 0 7.07l-3.54 3.54a5.003 5.003 0 0 1-7.07 0 5.003 5.003 0 0 1 0-7.07l1.49-1.49c-.01.82.12 1.64.4 2.43l-.47.47a2.982 2.982 0 0 0 0 4.24 2.982 2.982 0 0 0 4.24 0l3.53-3.53a2.982 2.982 0 0 0 0-4.24.973.973 0 0 1 0-1.42z"/>
+    </svg>
+  );
+};
 
   const getBadgeIconUrl = (iconHash: string) => {
     return `https://cdn.discordapp.com/badge-icons/${iconHash}.png`;
@@ -416,15 +428,50 @@ export default function Discord() {
                         initial={{ opacity: 0, scale: 0.8, y: 10 }}
                         animate={{ opacity: 1, scale: 1, y: 0 }}
                         transition={{ duration: 0.5, delay: 0.5 }}
-                        className="absolute -top-12 left-1/2 transform -translate-x-1/2 max-w-xs z-20"
+                        className="absolute top-2 left-1/2 transform -translate-x-1/2 max-w-xs z-20"
                       >
-                        <div className="relative bg-gray-800/95 backdrop-blur-sm text-white text-xs px-4 py-2 rounded-2xl border border-gray-600/40 shadow-xl">
-                          <span className="break-words font-medium">{data.activities.find(activity => activity.type === 4)?.state}</span>
+                        <div className="relative bg-gray-800/95 backdrop-blur-sm text-white text-xs px-4 py-2 rounded-2xl border border-gray-600/40 shadow-xl flex items-center gap-2 overflow-hidden" style={{ width: 240 }}>
+                          {(() => {
+                            const custom = data.activities.find(activity => activity.type === 4);
+                            if (custom?.emoji) {
+                              if (custom.emoji.id) {
+                                const emojiUrl = `https://cdn.discordapp.com/emojis/${custom.emoji.id}.${custom.emoji.animated ? "gif" : "png"}?size=32`;
+                                return (
+                                  <img
+                                    src={emojiUrl}
+                                    alt={custom.emoji.name}
+                                    className="w-5 h-5 inline-block align-middle"
+                                    style={{ display: "inline-block" }}
+                                  />
+                                );
+                              } else if (custom.emoji.name) {
+                                return (
+                                  <span className="inline-block align-middle">{custom.emoji.name}</span>
+                                );
+                              }
+                            }
+                            return null;
+                          })()}
+                          <div className="relative flex-1 overflow-hidden" style={{ minWidth: 0 }}>
+                            <motion.div
+                              initial={{ x: 240 }}
+                              animate={{ x: -((data.activities.find(activity => activity.type === 4)?.state?.length || 0) * 8) }}
+                              transition={{
+                                repeat: Infinity,
+                                repeatType: "loop",
+                                ease: "linear",
+                                duration: Math.max(8, (data.activities.find(activity => activity.type === 4)?.state?.length || 20) / 3)
+                              }}
+                              className="font-medium whitespace-nowrap"
+                              style={{ display: "inline-block" }}
+                            >
+                              {data.activities.find(activity => activity.type === 4)?.state}
+                            </motion.div>
+                          </div>
                           <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-l-transparent border-r-4 border-r-transparent border-t-6 border-t-gray-800/95"></div>
                         </div>
                       </motion.div>
                     )}
-
                     {/* Avatar with 3D effect */}
                     <div data-atropos-offset="10" className="relative w-24 h-24 mx-auto">
                       <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-gray-700/50 bg-gray-800 shadow-2xl">
@@ -523,15 +570,14 @@ export default function Discord() {
                     )}
                     
                     {/* Status Badge */}
-                    <div data-atropos-offset="4" className="inline-flex items-center gap-1 px-2 py-1 bg-black/60 rounded-full border border-gray-600/40 backdrop-blur-sm">
+                    <div data-atropos-offset="4" className="inline-flex items-center gap-1 px-3 py-1 bg-black/60 rounded-full border border-gray-600/40 backdrop-blur-sm min-w-[140px] justify-center">
                       <div 
                         className="w-2 h-2 rounded-full animate-pulse"
                         style={{ backgroundColor: STATUS_COLORS[data.discord_status] }}
                       ></div>
-                      <span className="text-xs text-gray-200 font-medium">{STATUS_LABELS[data.discord_status]}</span>
+                      <span className="text-xs text-gray-200 font-medium whitespace-nowrap">{STATUS_LABELS[data.discord_status]}</span>
                     </div>
                   </div>
-
                 </div>
 
                 {/* Activities Section */}
