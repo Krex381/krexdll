@@ -200,6 +200,11 @@ export default function Home() {
   
   return (
     <main className="h-screen bg-black">
+      {/* SEO Hidden H1 */}
+      <h1 className="sr-only">
+        Krex38 - krex.dll | Professional Web Developer Portfolio | React Next.js TypeScript Developer
+      </h1>
+      
       {/* Desktop Navigation Bar */}
       {!isMobile && !isTablet && (
         <motion.nav
@@ -207,6 +212,8 @@ export default function Home() {
           animate={{ y: 0, opacity: 1, filter: "blur(0px)" }}
           transition={{ duration: 1.2, ease: [0.25, 0.46, 0.45, 0.94] }}
           className="fixed top-0 left-0 right-0 z-50 p-4"
+          role="navigation"
+          aria-label="Main navigation"
         >
           <div className="max-w-4xl mx-auto">
             <motion.div 
@@ -513,10 +520,12 @@ export default function Home() {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, delay: 1 }}
         className="fixed bottom-12 left-1/2 transform -translate-x-1/2 z-30"
+        role="contentinfo"
+        aria-label="Site footer"
       >
         <div className="backdrop-blur-xl bg-black/30 border border-gray-500/30 rounded-xl px-4 py-2 text-center">
           <div className="text-xs text-gray-500 mt-1">
-            © 2025 Krex - All rights reserved.
+            © 2025 Krex38 - All rights reserved.
           </div>
           <div className="flex justify-center items-center space-x-2 mt-1">
             <span className="text-gray-500 text-xs">Want to skid this?</span>
@@ -527,6 +536,7 @@ export default function Home() {
               className="text-gray-400 hover:text-white text-xs underline transition-colors duration-300"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
+              aria-label="View source code on GitHub"
             >
               Check out on GitHub
             </motion.a>
