@@ -437,11 +437,14 @@ export default function Discord() {
                               if (custom.emoji.id) {
                                 const emojiUrl = `https://cdn.discordapp.com/emojis/${custom.emoji.id}.${custom.emoji.animated ? "gif" : "png"}?size=32`;
                                 return (
-                                  <img
+                                  <Image
                                     src={emojiUrl}
-                                    alt={custom.emoji.name}
-                                    className="w-5 h-5 inline-block align-middle"
+                                    alt={custom.emoji.name || "Custom emoji"}
+                                    width={20}
+                                    height={20}
+                                    className="inline-block align-middle"
                                     style={{ display: "inline-block" }}
+                                    unoptimized={custom.emoji.animated}
                                   />
                                 );
                               } else if (custom.emoji.name) {
