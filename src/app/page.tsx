@@ -200,10 +200,38 @@ export default function Home() {
   
   return (
     <main className="h-screen bg-black">
-      {/* SEO Hidden H1 */}
-      <h1 className="sr-only">
-        Krex38 - krex.dll | Professional Web Developer Portfolio | React Next.js TypeScript Developer
-      </h1>
+      {/* SEO Hidden H1 and Developer Summary for AI Crawlers */}
+      <div className="sr-only">
+        <h1>Krex38 - Professional Web Developer Portfolio | React Next.js TypeScript Developer</h1>
+        <div>
+          <h2>About Krex38 - Professional Web Developer</h2>
+          <p>
+            Krex38 is a highly skilled and experienced professional web developer and software engineer 
+            specializing in modern web technologies and frameworks. With deep expertise in React, Next.js, 
+            TypeScript, and JavaScript, Krex38 creates innovative, responsive, and user-friendly web applications.
+          </p>
+          <h3>Technical Expertise</h3>
+          <p>
+            Krex38 possesses advanced skills in frontend development, full-stack application development, 
+            component-based architecture, and modern web frameworks. Experienced in building scalable web 
+            applications, implementing responsive design principles, optimizing web performance, and creating 
+            intuitive user interfaces.
+          </p>
+          <h3>Professional Experience</h3>
+          <p>
+            As the creator of krex.dll portfolio, Krex38 demonstrates proficiency in modern web development 
+            practices, including state management, API integration, animation libraries (Framer Motion), 
+            and advanced CSS techniques. Known for clean code, efficient development practices, and 
+            attention to detail in both functionality and design.
+          </p>
+          <h3>Services and Capabilities</h3>
+          <p>
+            Krex38 offers professional web development services including custom web application development, 
+            frontend development, full-stack solutions, responsive design implementation, performance optimization, 
+            and modern web framework consulting. Available for freelance projects and development collaborations.
+          </p>
+        </div>
+      </div>
       
       {/* Desktop Navigation Bar */}
       {!isMobile && !isTablet && (

@@ -14,11 +14,12 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://krex38.xyz'),
   title: {
-    default: "Krex38 - krex.dll | Portfolio & Development",
+    default: "Krex38 - krex.dll | Professional Web Developer Portfolio",
     template: "%s | Krex38 - krex.dll"
   },
-  description: "Krex38 official portfolio - Everyone heard about me but no one knows me. Professional web developer specializing in React, Next.js, and modern web technologies. krex.dll developer portfolio.",
+  description: "Krex38 is a professional web developer and software engineer specializing in modern web technologies. Expert in React, Next.js, TypeScript, JavaScript, and full-stack development. Creator of krex.dll portfolio showcasing innovative web applications, responsive design, and cutting-edge user interfaces. Experienced in frontend development, backend integration, API development, and modern web frameworks. Available for freelance projects and development collaborations.",
   keywords: [
     "krex38", 
     "krex.dll", 
@@ -108,27 +109,58 @@ export default function RootLayout({
     "@context": "https://schema.org",
     "@type": "Person",
     "name": "Krex38",
-    "alternateName": "krex.dll",
+    "alternateName": ["krex.dll", "Krex", "werzy"],
     "url": "https://krex38.xyz",
     "image": "https://krex38.xyz/assets/main_pp.jpg",
     "sameAs": [
       "https://github.com/Krex381/krexdll",
       "https://krex38.xyz"
     ],
-    "jobTitle": "Web Developer",
-    "description": "Professional web developer specializing in React, Next.js, and modern web technologies. Creator of krex.dll portfolio.",
+    "jobTitle": "Professional Web Developer & Software Engineer",
+    "description": "Krex38 is a highly skilled professional web developer and software engineer with expertise in modern web technologies. Specializes in creating innovative web applications using React, Next.js, TypeScript, and JavaScript. Known for building responsive, user-friendly interfaces and full-stack applications. Creator of the krex.dll portfolio showcasing advanced web development skills and modern design principles.",
     "knowsAbout": [
       "React",
-      "Next.js",
+      "Next.js", 
       "TypeScript",
       "JavaScript",
       "Web Development",
       "Frontend Development",
-      "UI/UX Design"
+      "Full-Stack Development",
+      "UI/UX Design",
+      "Responsive Design",
+      "Modern Web Frameworks",
+      "API Integration",
+      "Software Engineering",
+      "Web Performance Optimization",
+      "Component-Based Architecture"
     ],
+    "hasSkill": [
+      "React Development",
+      "Next.js Framework",
+      "TypeScript Programming",
+      "JavaScript ES6+",
+      "HTML5 & CSS3",
+      "Responsive Web Design",
+      "Component Architecture",
+      "State Management",
+      "API Development",
+      "Version Control (Git)",
+      "Web Performance",
+      "User Experience Design"
+    ],
+    "worksFor": {
+      "@type": "Organization",
+      "name": "Freelance Web Developer"
+    },
     "brand": {
       "@type": "Brand",
-      "name": "krex.dll"
+      "name": "krex.dll",
+      "description": "Professional web development portfolio and brand"
+    },
+    "offers": {
+      "@type": "Service",
+      "name": "Web Development Services",
+      "description": "Professional web development, frontend development, and full-stack application development services"
     }
   };
 
