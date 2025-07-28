@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL('https://krex38.xyz'),
   title: {
-    default: "Krex38 - krex.dll | Professional Web Developer Portfolio",
+    default: "krex.dll",
     template: "%s | Krex38 - krex.dll"
   },
   description: "Krex38 is a professional web developer and software engineer specializing in modern web technologies. Expert in React, Next.js, TypeScript, JavaScript, and full-stack development. Creator of krex.dll portfolio showcasing innovative web applications, responsive design, and cutting-edge user interfaces. Experienced in frontend development, backend integration, API development, and modern web frameworks. Available for freelance projects and development collaborations.",
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
   publisher: "Krex38",
   
   openGraph: {
-    title: "Krex38 - krex.dll | Official Portfolio",
+    title: "krex.dll",
     description: "Krex38 official portfolio - Everyone heard about me but no one knows me. Professional web developer and krex.dll creator.",
     url: "https://krex38.xyz",
     siteName: "Krex38 Portfolio",
@@ -65,7 +65,7 @@ export const metadata: Metadata = {
   
   twitter: {
     card: "summary_large_image",
-    title: "Krex38 - krex.dll | Portfolio",
+    title: "krex.dll",
     description: "Krex38 official portfolio - Professional web developer and krex.dll creator.",
     images: ["/assets/og-image.png"],
     creator: "@krex38",
