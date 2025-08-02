@@ -449,6 +449,29 @@ export default function Home() {
                   {section.name}
                 </motion.button>
                 ))}
+                
+                {/* Mobile Footer in Navigation */}
+                <div className="mt-auto pt-6 border-t border-gray-700/50">
+                  <div className="text-center space-y-2">
+                    <div className="text-xs text-gray-500">
+                      © 2025 Krex38 - All rights reserved.
+                    </div>
+                    <div className="flex justify-center items-center space-x-2">
+                      <span className="text-gray-500 text-xs">Want to skid this?</span>
+                      <motion.a
+                        href="https://github.com/Krex381/krexdll"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-gray-400 hover:text-white text-xs underline transition-colors duration-300"
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        aria-label="View source code on GitHub"
+                      >
+                        GitHub
+                      </motion.a>
+                    </div>
+                  </div>
+                </div>
               </div>
             </motion.div>
           </>
@@ -542,35 +565,37 @@ export default function Home() {
         </motion.div>
       )}
       
-      {/* Footer */}
-      <motion.footer
-        initial={{ y: 100, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.6, delay: 1 }}
-        className="fixed bottom-12 left-1/2 transform -translate-x-1/2 z-30"
-        role="contentinfo"
-        aria-label="Site footer"
-      >
-        <div className="backdrop-blur-xl bg-black/30 border border-gray-500/30 rounded-xl px-4 py-2 text-center">
-          <div className="text-xs text-gray-500 mt-1">
-            © 2025 Krex38 - All rights reserved.
+      {/* Footer - Hidden on Mobile */}
+      {!isMobile && (
+        <motion.footer
+          initial={{ y: 100, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.6, delay: 1 }}
+          className="fixed bottom-12 left-1/2 transform -translate-x-1/2 z-30"
+          role="contentinfo"
+          aria-label="Site footer"
+        >
+          <div className="backdrop-blur-xl bg-black/30 border border-gray-500/30 rounded-xl px-4 py-2 text-center">
+            <div className="text-xs text-gray-500 mt-1">
+              © 2025 Krex38 - All rights reserved.
+            </div>
+            <div className="flex justify-center items-center space-x-2 mt-1">
+              <span className="text-gray-500 text-xs">Want to skid this?</span>
+              <motion.a
+                href="https://github.com/Krex381/krexdll"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-white text-xs underline transition-colors duration-300"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                aria-label="View source code on GitHub"
+              >
+                Check out on GitHub
+              </motion.a>
+            </div>
           </div>
-          <div className="flex justify-center items-center space-x-2 mt-1">
-            <span className="text-gray-500 text-xs">Want to skid this?</span>
-            <motion.a
-              href="https://github.com/Krex381/krexdll"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-400 hover:text-white text-xs underline transition-colors duration-300"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              aria-label="View source code on GitHub"
-            >
-              Check out on GitHub
-            </motion.a>
-          </div>
-        </div>
-      </motion.footer>
+        </motion.footer>
+      )}
     </main>
   );
 }
