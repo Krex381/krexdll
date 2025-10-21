@@ -136,6 +136,173 @@ const STATUS_LABELS = {
   offline: 'Offline'
 };
 
+// Helper function to parse bio text and make links clickable and emojis visible
+const parseBioWithLinks = (bioText: string) => {
+  // Combined regex to match URLs and Discord emojis
+  const combinedRegex = /(https?:\/\/[^\s]+)|(:[\w_]+:)/g;
+  const parts = bioText.split(combinedRegex).filter(Boolean);
+  
+  return parts.map((part, index) => {
+    // Check if it's a URL
+    if (part && part.match(/^https?:\/\//)) {
+      return (
+        <a
+          key={index}
+          href={part}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-blue-400 hover:text-blue-300 underline hover:underline-offset-2 transition-all duration-200"
+          onClick={(e) => e.stopPropagation()}
+        >
+          {part}
+        </a>
+      );
+    }
+    // Check if it's a Discord emoji format (:emoji_name:)
+    if (part && part.match(/^:[\w_]+:$/)) {
+      const emojiName = part.slice(1, -1); // Remove colons
+      // Map common Discord emoji names to Unicode emojis
+      const emojiMap: { [key: string]: string } = {
+        'white_heart': '🤍',
+        'heart': '❤️',
+        'blue_heart': '💙',
+        'green_heart': '💚',
+        'yellow_heart': '💛',
+        'purple_heart': '💜',
+        'black_heart': '🖤',
+        'orange_heart': '🧡',
+        'brown_heart': '🤎',
+        'sparkling_heart': '💖',
+        'heartbeat': '💓',
+        'heartpulse': '💗',
+        'two_hearts': '💕',
+        'revolving_hearts': '💞',
+        'cupid': '💘',
+        'gift_heart': '💝',
+        'heart_decoration': '💟',
+        'broken_heart': '💔',
+        'smile': '😄',
+        'joy': '😂',
+        'laughing': '😆',
+        'blush': '😊',
+        'heart_eyes': '😍',
+        'kissing_heart': '😘',
+        'relaxed': '☺️',
+        'wink': '😉',
+        'stuck_out_tongue_winking_eye': '😜',
+        'stuck_out_tongue_closed_eyes': '😝',
+        'grinning': '😀',
+        'thinking': '🤔',
+        'fire': '🔥',
+        'star': '⭐',
+        'sparkles': '✨',
+        'tada': '🎉',
+        'rocket': '🚀',
+        'skull': '💀',
+        'wave': '👋',
+        'ok_hand': '👌',
+        'thumbsup': '👍',
+        'thumbsdown': '👎',
+        'clap': '👏',
+        'pray': '🙏',
+        'muscle': '💪',
+        'eyes': '👀',
+        'brain': '🧠',
+        'crown': '👑',
+        'gem': '💎',
+        'ring': '💍',
+        'sunglasses': '😎',
+        'cool': '😎',
+        'nerd': '🤓',
+        'innocent': '😇',
+        'smiling_imp': '😈',
+        'devil': '😈',
+        'ghost': '👻',
+        'alien': '👽',
+        'robot': '🤖',
+        'poop': '💩',
+        'rainbow': '🌈',
+        'sunny': '☀️',
+        'moon': '🌙',
+        'zap': '⚡',
+        'snowflake': '❄️',
+        'coffee': '☕',
+        'pizza': '🍕',
+        'beer': '🍺',
+        'wine': '🍷',
+        'cake': '🎂',
+        'guitar': '🎸',
+        'microphone': '🎤',
+        'headphones': '🎧',
+        'game_die': '🎲',
+        'dart': '🎯',
+        'soccer': '⚽',
+        'basketball': '🏀',
+        'football': '🏈',
+        'baseball': '⚾',
+        'tennis': '🎾',
+        'trophy': '🏆',
+        'medal': '🏅',
+        'checkmark': '✅',
+        'x': '❌',
+        'exclamation': '❗',
+        'question': '❓',
+        'warning': '⚠️',
+        'no_entry': '⛔',
+        'airplane': '✈️',
+        'car': '🚗',
+        'bike': '🚲',
+        'house': '🏠',
+        'office': '🏢',
+        'school': '🏫',
+        'hospital': '🏥',
+        'bank': '🏦',
+        'moneybag': '💰',
+        'dollar': '💵',
+        'yen': '💴',
+        'euro': '💶',
+        'pound': '💷',
+        'chart': '📈',
+        'computer': '💻',
+        'keyboard': '⌨️',
+        'mouse': '🖱️',
+        'joystick': '🕹️',
+        'phone': '📱',
+        'telephone': '☎️',
+        'email': '📧',
+        'mailbox': '📫',
+        'book': '📖',
+        'books': '📚',
+        'pencil': '✏️',
+        'pen': '🖊️',
+        'art': '🎨',
+        'scissors': '✂️',
+        'lock': '🔒',
+        'unlock': '🔓',
+        'key': '🔑',
+        'mag': '🔍',
+        'bulb': '💡',
+        'flashlight': '🔦',
+        'battery': '🔋',
+        'fire_extinguisher': '🧯',
+        'wrench': '🔧',
+        'hammer': '🔨',
+        'nut_and_bolt': '🔩',
+        'link': '🔗',
+        'chains': '⛓️'
+      };
+      
+      const emoji = emojiMap[emojiName.toLowerCase()];
+      return (
+        <span key={index} className="inline-block" title={`:${emojiName}:`}>
+          {emoji || part}
+        </span>
+      );
+    }
+    return <span key={index}>{part}</span>;
+  });
+};
+
 export default function Discord() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
@@ -567,7 +734,7 @@ export default function Discord() {
                     {profileData?.user_profile.bio && (
                       <div data-atropos-offset="4" className="bg-gray-800/40 backdrop-blur-sm border border-gray-600/30 rounded-lg p-2 mb-2 max-w-sm mx-auto">
                         <p className="text-gray-300 text-xs leading-relaxed whitespace-pre-line">
-                          {profileData.user_profile.bio}
+                          {parseBioWithLinks(profileData.user_profile.bio)}
                         </p>
                       </div>
                     )}
