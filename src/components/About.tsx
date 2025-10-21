@@ -11,16 +11,16 @@ export default function About() {
   useEffect(() => {
     const fetchGitHubData = async () => {
       try {
-        const response = await fetch('https://api.github.com/users/Krex381');
+        const response = await fetch('/api/github-stats');
         if (response.ok) {
           const data = await response.json();
           setRepoCount(data.public_repos);
         } else {
-          setRepoCount(11);
+          setRepoCount(10);
         }
       } catch (error) {
         console.error('Failed to fetch GitHub data:', error);
-        setRepoCount(11);
+        setRepoCount(10);
       } finally {
         setLoading(false);
       }
